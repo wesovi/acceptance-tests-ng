@@ -1,0 +1,21 @@
+spring:
+   profiles: 
+      active: local
+server:
+   port: 9090
+---
+spring:
+   profiles: local   
+spring.jpa:
+    hibernate:
+      ddl-auto: create-drop
+logging:
+   level.org.springframework: WARN
+---
+spring:
+   profiles: docker
+spring.datasource:
+   driverClassName: org.h2.Driver 
+   url: jdbc:h2:mem:sampletest;MODE=MySQL
+   username: ${H2_USERNAME}
+   password: ${H2_PASSWORD}
