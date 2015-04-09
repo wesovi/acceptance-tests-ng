@@ -6,7 +6,7 @@
 	<groupId>com.wesovi</groupId>
 	<artifactId>blog.001</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 
 	<name>Dockerizing micro services</name>
 	<description>Demo project for a dockerized micro service </description>
@@ -54,5 +54,14 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<developers>
+		<developer>
+			<name>Iván Corrales Solera</name>
+			<email>developer@wesovi.com</email>
+			<organization>Wesovi</organization>
+			<organizationUrl>http://www.wesovi.com</organizationUrl>
+		</developer>
+	</developers>
 
 </project>
