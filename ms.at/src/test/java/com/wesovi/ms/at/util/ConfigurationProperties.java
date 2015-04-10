@@ -1,10 +1,15 @@
 package com.wesovi.ms.at.util;
 
+
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+@Log4j2
 public class ConfigurationProperties {
 
 	private static Map<String,String> environmentMap = new HashMap<>();
@@ -14,15 +19,16 @@ public class ConfigurationProperties {
 	private final Properties properties = new Properties();
 	
 	static{
-		environmentMap.put("local","/environment/local.properties");
-		environmentMap.put("docker","environment/docker.properties");
+		environmentMap.put("local","environment/local.properties");
+		environmentMap.put("docker","/environment/docker.properties");
 	}
 	
 	private ConfigurationProperties() throws IOException{
-		System.out.println("Environment: "+System.getProperty("environment"));
+        log.debug("Environment: " + System.getProperty("environment"));
 		String propertiesFilePath = environmentMap.get(System.getProperty("environment"));
-		System.out.println(propertiesFilePath);
-		properties.load(this.getClass().getResourceAsStream(propertiesFilePath));
+        log.debug(propertiesFilePath);
+		properties.load(this.getClass().getClassLoader().getResourceAsStream(propertiesFilePath));
+        log.debug("Properties already loeaded");
 	}
 	
 	public static ConfigurationProperties getInstance(){

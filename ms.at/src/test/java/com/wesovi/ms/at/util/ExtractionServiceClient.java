@@ -7,6 +7,8 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+import javax.ws.rs.core.MediaType;
+
 public class ExtractionServiceClient {
 	
 	private static ExtractionServiceClient instance = null;
@@ -32,7 +34,7 @@ public class ExtractionServiceClient {
 	}
 	
 	public List<Item> getItems(){
-		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+		ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 		return evaluateClientResponse(response);	
 	}
 	
