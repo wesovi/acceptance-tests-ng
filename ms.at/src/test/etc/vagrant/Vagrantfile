@@ -1,0 +1,42 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.require_version ">= 1.6.3"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  
+  config.vm.define "default", autostart: false do |default|
+    default.vm.box = "ubuntu/trusty64"
+    default.vm.network "private_network", ip: "192.168.33.10"
+    default.vm.synced_folder ".", "/var/www", type: "nfs"
+
+    default.vm.provider "virtualbox" do |virtualbox|
+      virtualbox.memory = 2048
+    end
+
+    default.vm.provision "docker" do |docker|
+      docker.build_image "containers/micro-service-extraction", args: "-t wesovi/micro-service-extraction"
+    end
+
+    #default.ssh.insert_key = false
+    #default.ssh.username = "docker"
+    #default.ssh.password = "docker"
+  end
+
+  
+
+  ##
+  # A more complex scenario. The application is composed of three containers: app, nginx and phpfpm
+  ##
+
+  
+  config.vm.define "micro-service-extraction" do |extraction|
+    extraction.vm.provider "docker" do |docker|
+      docker.image = "wesovi/micro-service-extraction"
+      docker.name  = "micro-service-extraction"
+      #docker.volumes = %w(/var/www:/var/www)
+      docker.ports = %w(8080:8080)
+      docker.vagrant_vagrantfile = __FILE__
+    end
+  end
+
+end

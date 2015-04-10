@@ -1,15 +1,20 @@
 package com.wesovi.ms.at.steps;
 
+import com.wesovi.ms.at.util.CucumberStore;
+
 import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
+import cucumber.runtime.java.StepDefAnnotation;
 
+@StepDefAnnotation
 public class CommonSteps {
+	private static CucumberStore cucumberStore = CucumberStore.getInstance();
 	
 	@Given("^a database with no items$")
 	public void a_database_with_no_items() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    //throw new PendingException();
 	}
 	
 	@Given("^the items database is initilized with the folloing data$")

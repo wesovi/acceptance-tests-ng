@@ -8,6 +8,9 @@
 	</parent>
 	<artifactId>ms.at</artifactId>
 	<name>Acceptance Tests</name>
+	<properties>
+		<os></os>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>info.cukes</groupId>
@@ -17,6 +20,104 @@
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.19</version>
+		</dependency>
+
 	</dependencies>
-	
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+
+				<executions>
+					<execution>
+						<id>downloading-micro-services</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.wesovi</groupId>
+									<artifactId>ms.extraction</artifactId>
+									<version>0.0.1-SNAPSHOT</version>
+									<outputDirectory>${project.build.directory}/applications</outputDirectory>
+									<destFileName>micro-service-extraction.jar</destFileName>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.wesovi</groupId>
+									<artifactId>ms.insertion</artifactId>
+									<version>0.0.1-SNAPSHOT</version>
+									<outputDirectory>${project.build.directory}/applications</outputDirectory>
+									<destFileName>micro-service-insertion.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>start-server</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>src/test/etc/scripts/${os}/${start}</executable>
+							<arguments>
+								<argument>${project.build.directory}/applications/</argument>
+								<argument>src/test/etc</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>unix</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<os>unix</os>
+				<start>start.sh</start>
+				<stop>stop.sh</stop>
+			</properties>
+		</profile>
+		<profile>
+			<id>windows</id>
+			<properties>
+				<os>windows</os>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>

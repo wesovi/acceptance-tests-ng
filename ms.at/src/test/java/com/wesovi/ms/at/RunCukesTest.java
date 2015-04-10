@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(monochrome = true,features="classpath:cucumber", dryRun=true,glue={"com.wesovi.ms.at.steps"})
+@CucumberOptions(monochrome = true,features="classpath:cucumber", glue={"com.wesovi.ms.at.steps"})
 public class RunCukesTest {
 
 }
