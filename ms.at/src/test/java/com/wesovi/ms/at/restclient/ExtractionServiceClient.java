@@ -1,4 +1,4 @@
-package com.wesovi.ms.at.util;
+package com.wesovi.ms.at.restclient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import com.wesovi.ms.at.model.Item;
+import com.wesovi.ms.at.util.ConfigurationProperties;
 
 import javax.ws.rs.core.MediaType;
 

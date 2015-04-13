@@ -8,9 +8,9 @@ import org.hamcrest.collection.IsEmptyCollection;
 import org.hamcrest.core.IsEqual;
 import org.omg.CosNaming.IstringHelper;
 
+import com.wesovi.ms.at.model.Item;
+import com.wesovi.ms.at.restclient.ExtractionServiceClient;
 import com.wesovi.ms.at.util.CucumberStore;
-import com.wesovi.ms.at.util.ExtractionServiceClient;
-import com.wesovi.ms.at.util.Item;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;

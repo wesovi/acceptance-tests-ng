@@ -40,40 +40,31 @@
 			<artifactId>jersey-client</artifactId>
 			<version>1.19</version>
 		</dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-api</artifactId>
-                <version>2.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>2.2</version>
-            </dependency>
-
-
-
-
-
-
-    </dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-
 				<executions>
 					<execution>
 						<id>downloading-micro-services</id>
-						<phase>pre-integration-test</phase>
+						<phase>generate-test-resources</phase>
 						<goals>
 							<goal>copy</goal>
 						</goals>
@@ -83,14 +74,14 @@
 									<groupId>com.wesovi</groupId>
 									<artifactId>ms.extraction</artifactId>
 									<version>0.0.1-SNAPSHOT</version>
-									<outputDirectory>${project.build.directory}/applications</outputDirectory>
+									<outputDirectory>${project.build.directory}/classes/applications</outputDirectory>
 									<destFileName>micro-service-extraction.jar</destFileName>
 								</artifactItem>
 								<artifactItem>
 									<groupId>com.wesovi</groupId>
 									<artifactId>ms.insertion</artifactId>
 									<version>0.0.1-SNAPSHOT</version>
-									<outputDirectory>${project.build.directory}/applications</outputDirectory>
+									<outputDirectory>${project.build.directory}/classes/applications</outputDirectory>
 									<destFileName>micro-service-insertion.jar</destFileName>
 								</artifactItem>
 							</artifactItems>
@@ -104,15 +95,15 @@
 				<executions>
 					<execution>
 						<id>start-server</id>
-						<phase>pre-integration-test</phase>
+						<phase>generate-test-resources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>src/test/etc/scripts/${os}/${start}</executable>
+							<executable>src/main/scripts/${os}/${start}</executable>
 							<arguments>
-								<argument>${project.build.directory}/applications/</argument>
-								<argument>src/test/etc</argument>
+								<argument>${project.build.directory}/vagrant/applications/</argument>
+								<argument>src/main/resources/vagrant</argument>
 							</arguments>
 						</configuration>
 					</execution>

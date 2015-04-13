@@ -23,7 +23,7 @@ WORKDIR /data
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 
-COPY $APPLICATION_PATH /opt/application.jar
+COPY $APPLICATION_PATH/micro-service-extraction.jar /opt/micro-service-extraction.jar
 
 # Define default command.
-CMD ["java","-jar","/opt/application.jar"]
+CMD ["java","-jar","/opt/micro-service-extraction.jar"]
