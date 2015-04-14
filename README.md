@@ -37,7 +37,7 @@ TODO
 
 **Iván Corrales Solera <developer@wesovi.com>** 
 * Site - http://www.wesovi.com
-* Linkedin - https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile
+* Linkedin - https://es.linkedin.com/pub/iván-corrales-solera
 * Twitter - https://twitter.com/Wesovi
 
 ## License
