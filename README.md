@@ -25,12 +25,17 @@ Just clone the project and let it go!
 TODO
 
 ## Tests
-TODO
-
+* Extraction micro service (ms.extraction):
+	* **mvn verify -Pintegration** : Run integration testing.
+* Insertion micro service (ms.insertion):
+	* **mvn verify -Pintegration** : Run integration testing.
+* Acceptance tests (ms.at):
+	* **mvn verify**: Run acceptance tests on a dockerized environment.
+ 
 
 ## Contributors
 
-* Iván Corrales Solera <developer@wesovi.com> 
+**Iván Corrales Solera <developer@wesovi.com>** 
 * Site - http://www.wesovi.com
 * Linkedin - https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile
 * Twitter - https://twitter.com/Wesovi
