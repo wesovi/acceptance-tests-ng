@@ -1,7 +1,8 @@
 #!/bin/bash
 
-APPLICATIONS_PATH=$1
-BASE_PATH=$2
+APPLICATIONS_PATH=$1/classes/applications
 
-cd $BASE_PATH/vagrant
-vagrant up
+cd $1/classes/vagrant
+
+echo "Launching vagrant"
+vagrant up --no-parallel

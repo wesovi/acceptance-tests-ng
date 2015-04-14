@@ -2,7 +2,7 @@ spring:
    profiles: 
       active: local
 server:
-   port: 8082
+   port: 8081
 ---
 spring:
    profiles: local   
@@ -19,6 +19,6 @@ spring.jpa:
       ddl-auto: update
 spring.datasource:
    driverClassName: org.postgresql.Driver 
-   url: jdbc:postgresql://localhost:5432/postgres
+   url: jdbc:postgresql://localhost:5432/usecase
    username: postgres
    password: secret

@@ -1,29 +1,6 @@
-#
-# Oracle Java 7 Dockerfile
-#
-# https://github.com/dockerfile/java
-# https://github.com/dockerfile/java/tree/master/oracle-java7
-#
+FROM dockerfile/java:oracle-java8 
 
-# Pull base image.
-FROM dockerfile/ubuntu
-
-# Install Java.
-RUN \
-  echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
-  add-apt-repository -y ppa:webupd8team/java && \
-  apt-get update && \
-  apt-get install -y oracle-java7-installer && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -rf /var/cache/oracle-jdk7-installer
-
-# Define working directory.
-WORKDIR /data
-
-# Define commonly used JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
-
-COPY $APPLICATION_PATH/micro-service-extraction.jar /opt/micro-service-extraction.jar
+COPY micro-service-extraction.jar /opt/micro-service-extraction.jar
 
 # Define default command.
-CMD ["java","-jar","/opt/micro-service-extraction.jar"]
+CMD ["java","-jar","-Dspring.profiles.active=docker","/opt/micro-service-extraction.jar"]

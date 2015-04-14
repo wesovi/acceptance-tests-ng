@@ -74,14 +74,14 @@
 									<groupId>com.wesovi</groupId>
 									<artifactId>ms.extraction</artifactId>
 									<version>0.0.1-SNAPSHOT</version>
-									<outputDirectory>${project.build.directory}/classes/applications</outputDirectory>
+									<outputDirectory>${project.build.directory}/classes/vagrant/containers/micro-service-extraction</outputDirectory>
 									<destFileName>micro-service-extraction.jar</destFileName>
 								</artifactItem>
 								<artifactItem>
 									<groupId>com.wesovi</groupId>
 									<artifactId>ms.insertion</artifactId>
 									<version>0.0.1-SNAPSHOT</version>
-									<outputDirectory>${project.build.directory}/classes/applications</outputDirectory>
+									<outputDirectory>${project.build.directory}/classes/vagrant/containers/micro-service-insertion</outputDirectory>
 									<destFileName>micro-service-insertion.jar</destFileName>
 								</artifactItem>
 							</artifactItems>
@@ -102,8 +102,7 @@
 						<configuration>
 							<executable>src/main/scripts/${os}/${start}</executable>
 							<arguments>
-								<argument>${project.build.directory}/vagrant/applications/</argument>
-								<argument>src/main/resources/vagrant</argument>
+								<argument>${project.build.directory}</argument>
 							</arguments>
 						</configuration>
 					</execution>

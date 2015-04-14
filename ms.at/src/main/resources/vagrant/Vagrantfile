@@ -1,47 +1,44 @@
-VAGRANTFILE_API_VERSION = "2"
-
 Vagrant.require_version ">= 1.6.3"
+
+VAGRANTFILE_API_VERSION = "2"
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+DOCKER_HOST_NAME = "wesovi-acceptance-tests-ng-host"
+DOCKER_HOST_VAGRANTFILE = "./DockerHostVagrantfile"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   
-  #config.vm.define "default", autostart: false do |default|
-
-  config.vm.hostname = 'wesovi'
-  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/vivid/current/vivid-server-cloudimg-amd64-vagrant-disk1.box"
-  config.vm.box_check_update = false
-  config.ssh.insert_key = true
-  
-  config.vm.network "private_network", ip:"192.168.50.10"
-  config.vm.network "forwarded_port", guest: 22, host: 1234, id: "ssh", auto_correct: true	
-  config.vm.network "forwarded_port", guest: 8081, host: 8081
-  config.vm.network "forwarded_port", guest: 8082, host: 8082
-  
-
-  #end
-
-  
-  
-  config.vm.provision "shell", inline:
-     "ps aux | grep 'sshd:' | awk '{print $2}' | xargs kill"
-  
+  config.vm.define "postgresql" do |database|
+    database.vm.provider "docker" do |docker|
+      docker.build_dir = "./containers/postgresql"
+      docker.build_args = ["-t=wesovi/postgresql","--rm=true"]
+      docker.name  = "postgresql"
+      docker.ports = %w(5432:5432)
+      docker.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      docker.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
+    end
+  end
   
   config.vm.define "micro-service-extraction" do |extraction|
     extraction.vm.provider "docker" do |docker|
       docker.build_dir = "./containers/micro-service-extraction"
+      docker.build_args = ["-t=wesovi/micro-service-extraction","--rm=true",'--e POSTGRES_PASSWORD=secret']
       docker.name  = "micro-service-extraction"
-      docker.volumes = %w(/var/www:/var/www)
-      docker.ports = %w(8080:8080)
+      docker.ports = %w(8081:8081)
+      docker.remains_running = true
+      docker.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      docker.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
     end
   end
   
   config.vm.define "micro-service-insertion" do |insertion|
     insertion.vm.provider "docker" do |docker|
       docker.build_dir = "./containers/micro-service-insertion"
-      docker.build_args = ["-t=wesovi/micro-service-insertion","--rm=true","--APPLICATION_PATH=ENV['APPLICATION_PATH']"]
+      docker.build_args = ["-t=wesovi/micro-service-insertion","--rm=true"]
       docker.name  = "micro-service-insertion"
-      docker.volumes = %w(/var/www:/var/www)
-      docker.ports = %w(8080:8080)
+      docker.ports = %w(8082:8082)
+      docker.vagrant_machine = "#{DOCKER_HOST_NAME}"
+      docker.vagrant_vagrantfile = "#{DOCKER_HOST_VAGRANTFILE}"
     end
   end
 
