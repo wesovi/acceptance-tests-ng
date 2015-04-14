@@ -22,18 +22,18 @@ Being focused on the best way to do acceptance tests. Run acceptance tests in a 
 Just clone the project and let it go!
 
 ## API Reference
-
+TODO
 
 ## Tests
-
+TODO
 
 
 ## Contributors
 
-Iván Corrales Solera <developer@wesovi.com> 
-Site - http://www.wesovi.com
-Linkedin - https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile
-Twitter - https://twitter.com/Wesovi
+* Iván Corrales Solera <developer@wesovi.com> 
+* Site - http://www.wesovi.com
+* Linkedin - https://www.linkedin.com/profile/public-profile-settings?trk=prof-edit-edit-public_profile
+* Twitter - https://twitter.com/Wesovi
 
 ## License
 
