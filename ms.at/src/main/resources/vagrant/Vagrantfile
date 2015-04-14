@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "micro-service-extraction" do |extraction|
     extraction.vm.provider "docker" do |docker|
       docker.build_dir = "./containers/micro-service-extraction"
-      docker.build_args = ["-t=wesovi/micro-service-extraction","--rm=true",'--env POSTGRES_PASSWORD=secret']
+      docker.build_args = ["-t=wesovi/micro-service-extraction","--rm=true"]
       docker.name  = "micro-service-extraction"
       docker.ports = %w(8081:8081)
       docker.remains_running = true

@@ -15,7 +15,7 @@ Below a cucumber scenario
 
 ## Motivation
 
-Being focused on the best way to do acceptance tests. Run acceptance tests in a local environment could be unsafe since we are not running our tests in a production environment. Docker allows us to do acceptance tests on a real environment since our own workstation.  
+Being focused on the best way to do acceptance tests. Run acceptance tests in a local environment could be risky since we are not running our tests in a production environment. Docker allows us to do acceptance tests on a real environment since our own workstation.  
 
 ## Installation
 
