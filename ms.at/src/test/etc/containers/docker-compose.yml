@@ -1,0 +1,17 @@
+postgresql:
+  build: ./postgresql
+  ports:
+    - "5432:5432"
+insertion:
+  build: ./micro-service-insertion
+  ports:
+    - "8082:8082"
+  links:
+    - "postgresql:postgresql"
+    
+extraction:
+  build: ./micro-service-extraction
+  ports:
+    - "8081:8081"
+  links:
+    - postgresql    

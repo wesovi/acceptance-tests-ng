@@ -74,14 +74,14 @@
 									<groupId>com.wesovi</groupId>
 									<artifactId>ms.extraction</artifactId>
 									<version>0.0.1-SNAPSHOT</version>
-									<outputDirectory>${project.build.directory}/classes/vagrant/containers/micro-service-extraction</outputDirectory>
+									<outputDirectory>src/test/etc/containers/micro-service-extraction</outputDirectory>
 									<destFileName>micro-service-extraction.jar</destFileName>
 								</artifactItem>
 								<artifactItem>
 									<groupId>com.wesovi</groupId>
 									<artifactId>ms.insertion</artifactId>
 									<version>0.0.1-SNAPSHOT</version>
-									<outputDirectory>${project.build.directory}/classes/vagrant/containers/micro-service-insertion</outputDirectory>
+									<outputDirectory>src/test/etc/containers/micro-service-insertion</outputDirectory>
 									<destFileName>micro-service-insertion.jar</destFileName>
 								</artifactItem>
 							</artifactItems>
@@ -102,7 +102,20 @@
 						<configuration>
 							<executable>src/main/scripts/${os}/${start}</executable>
 							<arguments>
-								<argument>${project.build.directory}</argument>
+								<argument>${basedir}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-server</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>src/main/scripts/${os}/${stop}</executable>
+							<arguments>
+								<argument>${basedir}</argument>
 							</arguments>
 						</configuration>
 					</execution>
@@ -113,12 +126,12 @@
 
 	<profiles>
 		<profile>
-			<id>unix</id>
+			<id>macox</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<os>unix</os>
+				<os>macox</os>
 				<start>start.sh</start>
 				<stop>stop.sh</stop>
 			</properties>

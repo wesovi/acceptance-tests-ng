@@ -1,11 +1,12 @@
 Feature: Micro Services Acceptance Tests
 
-
+	@Run
 	Scenario: Getting the list of items when the database is empty
 		Given a database with no items 
 		When we ask for the list of items
 		Then we obtain no items
 		
+	
 	Scenario: Getting the list of items when the database already contains items.
 		Given the items database is initilized with the folloing data
 			| name 		| description		|
@@ -15,7 +16,7 @@ Feature: Micro Services Acceptance Tests
 			| item004	| Out of date		|
 		When we ask for the list of items
 		Then we obtain '4' items
-		
+	
 	Scenario: We add new items to an empty database
 		Given a database with no items
 		When we add the below item 
