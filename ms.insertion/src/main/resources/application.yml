@@ -23,3 +23,12 @@ spring.datasource:
    url: jdbc:postgresql://${POSTGRESQL_PORT_5432_TCP_ADDR}:${POSTGRESQL_PORT_5432_TCP_PORT}/postgres
    username: postgres
    password: secret
+logging:
+   level.org.springframework: INFO
+server:
+   port: 8082
+   sessionTimeout: 30
+   # Tomcat specifics
+   tomcat:
+      accessLogEnabled: false
+      backgroundProcessorDelay: 30 # secs
