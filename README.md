@@ -1,5 +1,7 @@
 ## Synopsis
 
+[![Join the chat at https://gitter.im/wesovi/acceptance-tests-ng](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/wesovi/acceptance-tests-ng?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a simple proof of concept that will guide us on how to do acceptance tests on a dockerized environment.
 This is a maven project with 3 submodules, a couple of spring boot micro services(one micro service  inserts data into the database and the other one extract it) and the third submodule will show us how we can run our cucumber acceptance tests against a a dockerized environment.
 
